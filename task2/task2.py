@@ -45,7 +45,11 @@ class Graph:
             visited = set()
         path.append(start)
         visited.add(start)
+
         if start == target:
+            print(f"DFS-Path to {target}: {path}")
+            print(f"Visited: {visited}")
+            print("*" * 50)
             return path
         for vertex in self.graph.get(start, []):
             if vertex not in visited:
@@ -61,7 +65,10 @@ class Graph:
         while queue:
             node, path = queue.popleft()
             if node == target:
-                print(f"Path from {start} to {target}: {path}")
+                print(f"BFS-Path from {start} to {target}: {path}")
+                print(f"Visited: {visited}")
+                print(f"Queue: {queue}")
+                print("*" * 50)
                 return path
 
             visited.add(node)
@@ -88,9 +95,19 @@ g.add_edge(1, 13)
 
 g.add_edge(2, 4, directed_both=True)
 g.add_edge(4, 5)
+g.add_edge(4, 8)
+g.add_edge(8, 9)
+g.add_edge(9, 10)
+g.add_edge(10, 11)
+g.add_edge(11, 12)
 
 g.add_level(1)
+
 g.bfs(1, 7)
-
-
+g.dfs(1, 7)
+g.bfs(1, 22)
+g.dfs(1, 22)
+print(
+    " DFS проходить глибоко всередину графа перед поверненням назад.\nВ даному випадку він спочатку пішов через вершину 2 → 22, що є непрямим шляхом до 7.\nDFS відвідав менше вузлів, ніж BFS, оскільки він знайшов шлях раніше без перевірки всіх можливих варіантів."
+)
 g.show()
