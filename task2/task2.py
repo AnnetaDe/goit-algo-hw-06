@@ -1,14 +1,6 @@
 from collections import deque
 
 
-def depth():
-    pass
-
-
-def width():
-    pass
-
-
 class Graph:
     def __init__(self):
         self.graph = {}

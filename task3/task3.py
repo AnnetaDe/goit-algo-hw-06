@@ -1,6 +1,8 @@
 import networkx as nx
 import matplotlib.pyplot as plt
 
+from dijkstra import dijkstra
+
 
 def create_graph(edges):
     G = nx.DiGraph()
@@ -60,9 +62,20 @@ Graph_my = create_graph(edges)
 
 for target in all_departments:
     source = "CEO"
-    print("*" * 50)
+    print("-" * 50)
     print(f"Target: {target}")
     print(
         f"Way from {source} to {target}", shortest_path_di(Graph_my, source, target)[0]
     )
     print(f"Total distance steps: {shortest_path_di(Graph_my, source, target)[1]}")
+
+"""added dijkstra algorithm to compare with networkx, I hope to keep both till I remember how to use them"""
+for target in all_departments:
+    source = "CEO"
+    print("*" * 50)
+
+    print(f"Target: {target}")
+    shortest_path = dijkstra(Graph_my, source)[target]
+    print(f"Total distance steps: {shortest_path}")
+
+    print(f"Way from {source} to {target}", shortest_path)
